@@ -20,4 +20,12 @@ public class Review {
     public void setReviewText(String reviewText) {
         this.reviewText = reviewText;
     }
+
+    @Override
+    public String toString() {
+        return "Review{" +
+                "reviewerID='" + reviewerID + '\'' +
+                ", reviewText='" + reviewText + '\'' +
+                '}';
+    }
 }

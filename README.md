@@ -1,4 +1,5 @@
 # JavaHiddenGems
+[link to video](https://www.youtube.com/watch?v=bOEPqLyazAk)   
 Make sure to start the Docker-webserver-cache container before running the OWASP dependency check or the Old GroupIds Alerter.
 
 ## Apache Maven Build Cache Extension
@@ -39,6 +40,7 @@ https://buildpacks.io/
 
 ## ClassGraph
 Classpath and module scanner for Java and other JVM languages.
+Alternatives - `org.reflections` and `com.thoughtworks.qdox`
 https://github.com/classgraph/classgraph
 
 ## Eclipse Deeplearning4j

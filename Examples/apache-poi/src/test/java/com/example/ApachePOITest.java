@@ -74,24 +74,25 @@ public class ApachePOITest {
         }
 
         // Store in Excel file
-        XSSFWorkbook workbook = new XSSFWorkbook();
-        XSSFSheet sheet = workbook.createSheet("Apacha POI Example");
+        try (XSSFWorkbook workbook = new XSSFWorkbook()) {
+            XSSFSheet sheet = workbook.createSheet("Apacha POI Example");
 
-        int rowNumber = 0;
-        for (String paragraph: paragraphs) {
-            Row row = sheet.createRow(rowNumber++);
+            int rowNumber = 0;
+            for (String paragraph : paragraphs) {
+                Row row = sheet.createRow(rowNumber++);
 
-            int cellNumber = 0;
-            row.createCell(cellNumber++).setCellValue((Integer) rowNumber);
-            row.createCell(cellNumber++).setCellValue((String) paragraph);
-            long numberOfWords = Arrays.stream(paragraph.split("\\s+")).count();
-            row.createCell(cellNumber++).setCellValue((Long) numberOfWords);
-        }
+                int cellNumber = 0;
+                row.createCell(cellNumber++).setCellValue(rowNumber);
+                row.createCell(cellNumber++).setCellValue(paragraph);
+                long numberOfWords = Arrays.stream(paragraph.split("\\s+")).count();
+                row.createCell(cellNumber++).setCellValue(numberOfWords);
+            }
 
-        Path excelFilePath = Paths.get("target", "ExcelOutput.xlsx");
+            Path excelFilePath = Paths.get("target", "ExcelOutput.xlsx");
 
-        try(FileOutputStream fileOutputStream = new FileOutputStream(excelFilePath.toFile())) {
-            workbook.write(fileOutputStream);
+            try (FileOutputStream fileOutputStream = new FileOutputStream(excelFilePath.toFile())) {
+                workbook.write(fileOutputStream);
+            }
         }
     }
 }

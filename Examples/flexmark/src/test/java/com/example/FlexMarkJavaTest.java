@@ -1,6 +1,7 @@
 package com.example;
 
 import com.vladsch.flexmark.ast.Text;
+import com.vladsch.flexmark.html.HtmlRenderer;
 import com.vladsch.flexmark.parser.Parser;
 import com.vladsch.flexmark.util.ast.Node;
 import com.vladsch.flexmark.util.ast.NodeVisitor;
@@ -58,6 +59,11 @@ public class FlexMarkJavaTest {
         MutableDataSet options = new MutableDataSet();
         Parser parser = Parser.builder(options).build();
         Node document = parser.parse(markdown);
+
+        HtmlRenderer renderer = HtmlRenderer.builder().build();
+        String html = renderer.render(document);
+        Files.writeString(Paths.get("target", fileName + ".html"), html);
+
         visitor.visit(document);
         assertEquals(72, topicCount);
         assertEquals(20, uniqueStartingCharactersSet.size());

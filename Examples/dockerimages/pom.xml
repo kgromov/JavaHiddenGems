@@ -42,6 +42,16 @@
                 </configuration>
             </plugin>
 
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <docker>
+                        <host>//./pipe/dockerDesktopLinuxEngine</host>
+                    </docker>
+                </configuration>
+            </plugin>
+
             <!-- Make sure to specify the java.version property in the pom.xml -->
             <!-- Buildpack, no pom change needed: mvn spring-boot:build-image -Dmaven.test.skip -Dspring-boot.build-image.imageName=buildpackexample-->
             <!-- Run the resulting image with Docker: docker run -p 8082:8080 buildpackexample -->
