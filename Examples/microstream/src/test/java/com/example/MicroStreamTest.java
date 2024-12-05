@@ -9,8 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(classes = MicroStreamApplication.class)
 public class MicroStreamTest {
@@ -30,10 +29,9 @@ public class MicroStreamTest {
         final Object root = storageManager.root();
 
         String porscheExpected = "Car{brand='Porsche', model='911', carPartList=[CarPart{name='wheel', price=23.23}]}";
-        assertTrue(root instanceof Car);
-        if (root instanceof Car car) {
-            Assertions.assertEquals(porscheExpected, car.toString());
-        }
+        assertInstanceOf(Car.class, root);
+        Car car = (Car) root;
+        Assertions.assertEquals(porscheExpected, car.toString());
 
         storageManager.shutdown();
     }

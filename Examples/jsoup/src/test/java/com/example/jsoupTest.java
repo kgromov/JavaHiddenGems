@@ -17,7 +17,7 @@ public class jsoupTest {
 
         for (Element element : elements) {
             if (element.text().contains("Downloads of Packages")) {
-                String result = element.select("h4").get(0).text();
+                String result = element.select("h4").getFirst().text();
                 System.out.println("Number of downloads " + result);
             }
         }

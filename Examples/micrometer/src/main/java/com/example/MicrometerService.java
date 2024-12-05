@@ -1,5 +1,6 @@
 package com.example;
 
+import io.micrometer.core.annotation.Counted;
 import io.micrometer.core.annotation.Timed;
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.Gauge;
@@ -25,10 +26,11 @@ public class MicrometerService {
     List<Integer> gaugeList = new ArrayList<>();
 
     @Timed(value = "micrometer.endpoint.time", description = "Duration of the Micrometer endpoint")
+    @Counted(value = "micrometer.endpoint.counter", description = "Number of hits fo the Micrometer endpoint")
     @GetMapping("/micro")
     public String micro() {
-        Counter counter = simpleMeterRegistry.counter("micrometer.endpoint.counter");
-        counter.increment();
+      /*  Counter counter = simpleMeterRegistry.counter("micrometer.endpoint.counter");
+        counter.increment();*/
 
         int seconds = LocalDateTime.now().getSecond();
         if ((LocalDateTime.now().getSecond() % 2) ==0) {
