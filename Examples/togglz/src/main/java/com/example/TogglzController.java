@@ -11,7 +11,7 @@ import static com.example.TogglzFeatures.AWESOME;
 // http://localhost:8080/console
 @RestController
 public class TogglzController {
-    private FeatureManager featureManager;
+    private final FeatureManager featureManager;
 
     public TogglzController(FeatureManager featureManager) {
         this.featureManager = featureManager;

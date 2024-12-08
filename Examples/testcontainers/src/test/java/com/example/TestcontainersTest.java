@@ -38,11 +38,11 @@ public class TestcontainersTest {
         String url = mySQLContainer.getJdbcUrl();
         String username = mySQLContainer.getUsername();
         String password = mySQLContainer.getPassword();
-        try (Connection conn = DriverManager.getConnection(url, username, password)) {
-            Statement statement = conn.createStatement();
+        try (Connection conn = DriverManager.getConnection(url, username, password);
+             Statement statement = conn.createStatement();
+             PreparedStatement preparedStatement = conn.prepareStatement(storeBook);) {
             statement.execute(createBookTable);
 
-            PreparedStatement preparedStatement = conn.prepareStatement(storeBook);
             preparedStatement.setString(1, "Spring Boot in Action");
             preparedStatement.executeUpdate();
             preparedStatement.setString(1, "Learning MySQL");

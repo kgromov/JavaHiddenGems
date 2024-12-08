@@ -10,7 +10,7 @@ public class PassayTest {
             // Length should be between 8 and 50
             new LengthRule(8, 50),
 
-            // Contains at least two uppercase characer
+            // Contains at least two uppercase character
             new CharacterRule(EnglishCharacterData.UpperCase, 2),
 
             // Contains at least three digit character

@@ -29,9 +29,9 @@ public class TimefoldConferenceSchedulingApp {
         return (args) -> {
             timeslotRepository.save(new Timeslot(DayOfWeek.MONDAY, LocalTime.of(10, 30), LocalTime.of(11, 15)));
             timeslotRepository.save(new Timeslot(DayOfWeek.MONDAY, LocalTime.of(11, 30), LocalTime.of(12, 15)));
-            timeslotRepository.save(new Timeslot(DayOfWeek.MONDAY, LocalTime.of(14, 00), LocalTime.of(14, 45)));
-            timeslotRepository.save(new Timeslot(DayOfWeek.MONDAY, LocalTime.of(15, 15), LocalTime.of(16, 00)));
-            timeslotRepository.save(new Timeslot(DayOfWeek.MONDAY, LocalTime.of(16, 15), LocalTime.of(17, 00)));
+            timeslotRepository.save(new Timeslot(DayOfWeek.MONDAY, LocalTime.of(14, 0), LocalTime.of(14, 45)));
+            timeslotRepository.save(new Timeslot(DayOfWeek.MONDAY, LocalTime.of(15, 15), LocalTime.of(16, 0)));
+            timeslotRepository.save(new Timeslot(DayOfWeek.MONDAY, LocalTime.of(16, 15), LocalTime.of(17, 0)));
 
             roomRepository.save(new Room("Progress"));
             roomRepository.save(new Room("Mission 1"));

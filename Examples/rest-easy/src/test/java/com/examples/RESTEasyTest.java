@@ -36,7 +36,7 @@ public class RESTEasyTest {
 
         String paganiExpected = "Car{brand='Pagani', model='Huayra', carPartList=[CarPart{name='engine', price=8342.28}]}";
         assertEquals(1, carList.size());
-        assertEquals(paganiExpected, carList.get(0).toString());
+        assertEquals(paganiExpected, carList.getFirst().toString());
 
         // asynchronous
         CarPart porscheCarPart1 = new CarPart("wheel", 23.23);

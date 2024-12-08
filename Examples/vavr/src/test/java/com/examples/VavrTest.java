@@ -37,7 +37,7 @@ public class VavrTest {
         assertTrue(result.isFailure());
         assertEquals("java.lang.ArithmeticException: / by zero", result.failed().get().toString());
 
-        // Functional interfacces
+        // Functional interfaces
         Function8<Integer, Integer, Integer, Integer, Integer, Integer, Integer, Integer, Integer> multiply =
                 (a, b, c, d, e, f, g, h) -> a * b * c * d * e * f * g * h;
         Integer multiplication = multiply.apply(1, 2, 3, 5, 8, 13, 21, 34);

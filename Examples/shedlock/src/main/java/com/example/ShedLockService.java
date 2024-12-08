@@ -17,24 +17,24 @@ public class ShedLockService {
 
     @Scheduled(cron = "0/5 * * * * *")//Every 5 seconds
     public void schedule1(){
-        System.out.println("            Default scheduling 1 " + LocalTime.now().format(dateTimeFormatter).toString());
+        System.out.println("            Default scheduling 1 " + LocalTime.now().format(dateTimeFormatter));
     }
 
     @Scheduled(cron = "0/5 * * * * *")//Every 5 seconds
     public void schedule2(){
-        System.out.println("            Default scheduling 2 " + LocalTime.now().format(dateTimeFormatter).toString());
+        System.out.println("            Default scheduling 2 " + LocalTime.now().format(dateTimeFormatter));
     }
 
     @Scheduled(cron = "0/5 * * * * *")//Every 5 seconds
     @SchedulerLock(name = "taskName", lockAtMostFor = "14m", lockAtLeastFor = "4s")
     public void scheduledTask1() {
-        System.out.println("ShedLock method 1 " + LocalTime.now().format(dateTimeFormatter).toString());
+        System.out.println("ShedLock method 1 " + LocalTime.now().format(dateTimeFormatter));
 
     }
 
     @Scheduled(cron = "0/5 * * * * *")//Every 5 seconds
     @SchedulerLock(name = "taskName", lockAtMostFor = "14m", lockAtLeastFor = "4s")
     public void scheduledTask2() {
-        System.out.println("ShedLock method 2 " + LocalTime.now().format(dateTimeFormatter).toString());
+        System.out.println("ShedLock method 2 " + LocalTime.now().format(dateTimeFormatter));
     }
 }
