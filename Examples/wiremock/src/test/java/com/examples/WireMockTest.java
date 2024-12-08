@@ -22,21 +22,49 @@ public class WireMockTest {
     void testWireMock(WireMockRuntimeInfo wmRuntimeInfo) throws URISyntaxException, IOException, InterruptedException {
         Gson gson = new Gson();
         Car car = new Car("Fiat", "Punto");
+        Person person = new Person(null, "John", "Doe");
 
-        stubFor(get("/car").willReturn(aResponse().withHeader("Content-Type", "application/json").withBody(gson.toJson(car))));
+        stubFor(
+                get("/car")
+                        .willReturn(aResponse()
+                                .withHeader("Content-Type", "application/json")
+                                .withBody(gson.toJson(car))
+                                .withStatus(200)
+                        )
+        );
 
-        final HttpClient client = HttpClient.newBuilder().build();
+        stubFor(
+                post("/persons")
+                        .withHeader("Content-Type", equalTo("application/json"))
+                        .withRequestBody(equalToJson(gson.toJson(person)))
+                        .willReturn(aResponse()
+                                .withHeader("Content-Type", "application/json")
+                                .withBody(gson.toJson( new Person("John", "Doe")))
+                                .withStatus(201)
+                        )
+        );
 
-        final HttpRequest request = HttpRequest.newBuilder()
-                .uri(new URI("http://localhost:" + wmRuntimeInfo.getHttpPort() + "/car"))
-                .header("Content-Type", "text/xml")
-                .GET().build();
+        try (HttpClient client = HttpClient.newBuilder().build()) {
+            final HttpRequest getRequest = HttpRequest.newBuilder()
+                    .uri(new URI("http://localhost:" + wmRuntimeInfo.getHttpPort() + "/car"))
+                    .header("Content-Type", "text/xml")
+                    .GET()
+                    .build();
 
-        final HttpResponse<String> response =
-                client.send(request, HttpResponse.BodyHandlers.ofString());
+            final HttpResponse<String> getResponse = client.send(getRequest, HttpResponse.BodyHandlers.ofString());
+            String expectedFiat = """
+                    {"brand":"Fiat","model":"Punto"}""";
+            Assertions.assertEquals(expectedFiat, getResponse.body());
 
-        String expectedFiat = """
-                {"brand":"Fiat","model":"Punto"}""";
-        Assertions.assertEquals(expectedFiat, response.body().toString());
+
+            final HttpRequest postRequest = HttpRequest.newBuilder()
+                    .uri(new URI("http://localhost:" + wmRuntimeInfo.getHttpPort() + "/persons"))
+                    .header("Content-Type", "application/json")
+                    .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(person)))
+                    .build();
+            final HttpResponse<String> postResponse = client.send(postRequest, HttpResponse.BodyHandlers.ofString());
+            Person createdPerson = gson.fromJson(postResponse.body(), Person.class);
+            Assertions.assertNotNull(createdPerson.id());
+        }
     }
 }

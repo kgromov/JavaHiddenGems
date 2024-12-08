@@ -166,7 +166,6 @@ kcore_5.json
 jlink-module/
 jlink-image/
 jpackagecustumjre/
-*.jar
 *.pdf
 *.docx
 *.xlsx
