@@ -9,14 +9,13 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>javapoet</artifactId>
+    <artifactId>zxcvbn4j</artifactId>
 
 
     <dependencies>
         <dependency>
-            <groupId>com.palantir.javapoet</groupId>
-            <artifactId>javapoet</artifactId>
+            <groupId>com.nulab-inc</groupId>
+            <artifactId>zxcvbn</artifactId>
         </dependency>
     </dependencies>
-
 </project>

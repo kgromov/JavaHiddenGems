@@ -31,6 +31,7 @@
         <module>jacoco-agent</module>
         <module>flexmark</module>
         <module>gatling</module>
+        <module>gatling-kafka</module>
         <module>awaitility</module>
         <module>micrometer</module>
         <module>testcontainers</module>
@@ -53,6 +54,7 @@
         <module>typesafe-config</module>
         <module>vavr</module>
         <module>wiremock</module>
+        <module>zxcvbn4j</module>
     </modules>
 
     <parent>
@@ -227,9 +229,9 @@
             </dependency>
 
             <dependency>
-                <groupId>com.squareup</groupId>
+                <groupId>com.palantir.javapoet</groupId>
                 <artifactId>javapoet</artifactId>
-                <version>1.13.0</version>
+                <version>0.5.0</version>
             </dependency>
 
             <dependency>
@@ -534,6 +536,12 @@
                 <version>0.6.1</version>
             </dependency>
             <!-- End TypeSafe config -->
+
+            <dependency>
+                <groupId>com.nulab-inc</groupId>
+                <artifactId>zxcvbn</artifactId>
+                <version>1.9.0</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 </project>
